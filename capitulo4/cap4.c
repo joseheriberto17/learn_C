@@ -19,6 +19,10 @@ void main()
     }
     puts("");
 
+    printf("El tamaño de signed char es: %zu bytes\n", sizeof(signed char));
+    printf("El tamaño de short int es: %zu bytes\n", sizeof(short int));
+    printf("El tamaño de int es: %zu bytes\n", sizeof(int));
+
     printf("iniciando un switch, ingrese un caracter: ");
 
     int grade = 0;
@@ -48,7 +52,11 @@ void main()
         }
     }
 
-    signed char a; // int_8
-    printf("El tamaño de short int es: %zu bytes\n", sizeof(short int));
-    printf("El tamaño de int es: %zu bytes\n", sizeof(int));
+
+    count = 0;
+    do
+    {
+        printf("%d",count++);
+    } while (count <= 10);
+    
 }
