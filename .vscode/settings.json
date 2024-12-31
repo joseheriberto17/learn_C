@@ -3,6 +3,7 @@
         "*.cc": "cpp",
         "*.py": "python",
         "*.c": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "stdbool.h": "c"
     }
 }

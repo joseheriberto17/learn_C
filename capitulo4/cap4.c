@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <stdbool.h>
 
-void main()
+int main()
 {
     puts("iniciando bucle con while");
 
@@ -22,6 +23,7 @@ void main()
     printf("El tamaño de signed char es: %zu bytes\n", sizeof(signed char));
     printf("El tamaño de short int es: %zu bytes\n", sizeof(short int));
     printf("El tamaño de int es: %zu bytes\n", sizeof(int));
+    printf("El tamaño de long int es: %zu bytes\n", sizeof(long int));
 
     printf("iniciando un switch, ingrese un caracter: ");
 
@@ -51,12 +53,23 @@ void main()
             break;
         }
     }
-
-
     count = 0;
+
+    puts(" ");
+
     do
     {
         printf("%d",count++);
     } while (count <= 10);
+
+    puts(" ");
     
+    // manejo de booleanos
+    bool a = 1;
+    if (a == true)
+    {
+        puts("booelano positivo\n");
+    }
+    
+    return 0;
 }
