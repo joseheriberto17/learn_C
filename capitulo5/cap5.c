@@ -1,31 +1,57 @@
+// fig05_08.c
+// Ejemplo de ámbitos en C.
 #include <stdio.h>
 
-int maximum(int x, int y, int z); // prototipo de función
+void useLocal(void); // prototipo de función
+void useStaticLocal(void); // prototipo de función
+void useGlobal(void); // prototipo de función
+
+int x = 1; // variable global
 
 int main(void) {
-    int number1 = 0; // primer entero ingresado por el usuario
-    int number2 = 0; // segundo entero ingresado por el usuario
-    int number3 = 0; // tercer entero ingresado por el usuario
+    int x = 5; // variable local en main
 
-    printf("%s", "Enter three integers: ");
-    scanf("%d%d%d", &number1, &number2, &number3);
+    printf("local x in outer scope of main is %d\n", x);
 
-    // number1, number2 y number3 son argumentos
-    // de la llamada a la función maximum
-    printf("Maximum is: %d\n", maximum(number1, number2, number3));
+    { // inicio de un nuevo ámbito
+        int x = 7; // variable local en el nuevo ámbito
+        printf("local x in inner scope of main is %d\n", x);
+    } // fin del nuevo ámbito
+
+    printf("local x in outer scope of main is %d\n", x);
+
+    useLocal(); // useLocal tiene una variable local automática
+    useStaticLocal(); // useStaticLocal tiene una variable local estática
+    useGlobal(); // useGlobal utiliza la variable global x
+    useLocal(); // useLocal reinicializa su variable local automática
+    useStaticLocal(); // useStaticLocal conserva el valor previo de x
+    useGlobal(); // la variable global x también conserva su valor
+
+    printf("\nlocal x in main is %d\n", x);
 }
 
-// Definición de la función maximum
-int maximum(int x, int y, int z) {
-    int max = x; // suponer que x es el mayor
+// useLocal reinicializa la variable local x en cada llamada
+void useLocal(void) {
+    int x = 25; // inicializada cada vez que useLocal es llamada
 
-    if (y > max) { // si y es mayor que max,
-        max = y;   // asignar y a max
-    }
+    printf("\nlocal x in useLocal is %d after entering useLocal\n", x);
+    ++x;
+    printf("local x in useLocal is %d before exiting useLocal\n", x);
+}
 
-    if (z > max) { // si z es mayor que max,
-        max = z;   // asignar z a max
-    }
+// useStaticLocal inicializa x solo en la primera llamada
+// Retiene el valor de x entre llamadas
+void useStaticLocal(void) {
+    static int x = 50; // inicializada una vez
 
-    return max; // max es el valor más grande
+    printf("\nlocal static x is %d on entering useStaticLocal\n", x);
+    ++x;
+    printf("local static x is %d on exiting useStaticLocal\n", x);
+}
+
+// useGlobal modifica la variable global x en cada llamada
+void useGlobal(void) {
+    printf("\nglobal x is %d on entering useGlobal\n", x);
+    x *= 10;
+    printf("global x is %d on exiting useGlobal\n", x);
 }
