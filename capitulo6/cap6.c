@@ -19,7 +19,7 @@ void array(void){
 }
 
 void arrayString(void){
-    char string[]= {'f','i','r','s','t'};
+    char string[]= {'f','i','r','s','t','\0'};
 
     printf("%c",string[0]);
 }

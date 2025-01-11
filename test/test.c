@@ -1,17 +1,21 @@
+// fig07_01.c
+// Usando los operadores & y *.
 #include <stdio.h>
 
-void recursiva(int n) {
-    static int acumulador = 0;  // Persiste entre llamadas recursivas
-    acumulador += n;
-    printf("Nivel: %d, Acumulador: %d\n", n, acumulador);
+int main(void) {
+    int a = 7;                // Variable entera
+    int *aPtr = &a;           // El puntero apunta a la dirección de a
 
-    if (n > 0)
-        recursiva(n - 1);  // Llamada recursiva
+    // Mostrar la dirección de 'a' y el valor de 'aPtr'
+    printf("Address of a is %p\nValue of aPtr is %p\n\n", &a, aPtr);
 
-    printf("Saliendo del nivel %d, Acumulador: %d\n", n, acumulador);
-}
+    // Mostrar el valor de 'a' y el valor al que apunta 'aPtr'
+    printf("Value of a is %d\nValue of *aPtr is %d\n\n", a, *aPtr);
 
-int main() {
-    recursiva(3); // Comienza desde el nivel 3
+    // Mostrar que * y & son complementarios
+    printf("Showing that * and & are complements of each other\n");
+    printf("&*aPtr = %p\n*&aPtr = %p\n", &*aPtr, *&aPtr);
+
     return 0;
 }
+
