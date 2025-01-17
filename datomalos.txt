@@ -1,0 +1,42 @@
+sudo fdisk -l /dev/sdb
+Disk /dev/sdb: 7,51 GiB, 8068792320 bytes, 15759360 sectors
+Disk model: USB CARD READER 
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+
+
+
+
+
+
+sudo dmesg | grep --color=auto sdb
+[13502.014292] sdb: detected capacity change from 62333952 to 0
+[13502.089376] EXT4-fs (sdb2): unmounting filesystem a36be96c-66be-4487-a7a6-0481bca99d89.
+[13502.089596] sd 1:0:0:0: [sdb] tag#0 access beyond end of device
+[13502.089606] I/O error, dev sdb, sector 5513216 op 0x1:(WRITE) flags 0x9800 phys_seg 1 prio class 0
+[13502.089614] Buffer I/O error on dev sdb2, logical block 557056, lost sync page write
+[13502.089657] JBD2: I/O error when updating journal superblock for sdb2-8.
+[13502.089661] Aborting journal on device sdb2-8.
+[13502.089676] sd 1:0:0:0: [sdb] tag#0 access beyond end of device
+[13502.089680] I/O error, dev sdb, sector 5513216 op 0x1:(WRITE) flags 0x9800 phys_seg 1 prio class 0
+[13502.089685] Buffer I/O error on dev sdb2, logical block 557056, lost sync page write
+[13502.089693] JBD2: I/O error when updating journal superblock for sdb2-8.
+[13502.089722] EXT4-fs error (device sdb2): ext4_put_super:1326: comm umount: Couldn't clean up the journal
+[13502.089746] sd 1:0:0:0: [sdb] tag#0 access beyond end of device
+[13502.089750] I/O error, dev sdb, sector 1056768 op 0x1:(WRITE) flags 0x3800 phys_seg 1 prio class 0
+[13502.089755] Buffer I/O error on dev sdb2, logical block 0, lost sync page write
+[13502.089763] EXT4-fs (sdb2): I/O error while writing superblock
+[13502.089767] EXT4-fs (sdb2): Remounting filesystem read-only
+[13504.218571] sd 1:0:0:0: [sdb] 15759360 512-byte logical blocks: (8.07 GB/7.51 GiB)
+[13504.218884] sdb: detected capacity change from 0 to 15759360
+[13504.219777]  sdb: sdb1
+
+lsblk
+sdb           8:16   1   7,5G  0 disk 
+└─sdb1        8:17   1   7,5G  0 part 
+
+sudo blkid /dev/sdb
+

@@ -44,7 +44,9 @@ int main()
 
     mostrarDatosPorReferencia(usuarioPtr,5);
 
-    
+    char *color[] = "blue";
+
+    color[0] = 'c';
 
     return 0;
 }

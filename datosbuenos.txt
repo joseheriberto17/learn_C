@@ -1,0 +1,64 @@
+sudo fdisk -l /dev/sdb
+Disk /dev/sdb: 29,72 GiB, 31914983424 bytes, 62333952 sectors
+Disk model: USB CARD READER 
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x442e675f
+
+Device     Boot   Start      End  Sectors  Size Id Type
+/dev/sdb1          8192  1056767  1048576  512M  c W95 FAT32 (LBA)
+/dev/sdb2       1056768 62333951 61277184 29,2G 83 Linux
+
+
+sudo dmesg | grep --color=auto sdb
+[11905.395184] sd 1:0:0:0: [sdb] 15759360 512-byte logical blocks: (8.07 GB/7.51 GiB)
+[11905.395350] sd 1:0:0:0: [sdb] Write Protect is off
+[11905.395361] sd 1:0:0:0: [sdb] Mode Sense: 03 00 00 00
+[11905.395529] sd 1:0:0:0: [sdb] No Caching mode page found
+[11905.395538] sd 1:0:0:0: [sdb] Assuming drive cache: write through
+[11905.400756] sd 1:0:0:0: [sdb] Attached SCSI removable disk
+[12671.884908] sdb: detected capacity change from 15759360 to 0
+[12694.409790] sd 1:0:0:0: [sdb] 62333952 512-byte logical blocks: (31.9 GB/29.7 GiB)
+[12694.410154] sdb: detected capacity change from 0 to 62333952
+[12694.410857]  sdb: sdb1 sdb2
+[12694.930677] EXT4-fs (sdb2): mounted filesystem a36be96c-66be-4487-a7a6-0481bca99d89 r/w with ordered data mode. Quota mode: none.
+[13166.169855] sdb: detected capacity change from 62333952 to 0
+[13166.215661] sd 1:0:0:0: [sdb] tag#0 access beyond end of device
+[13166.215680] I/O error, dev sdb, sector 8192 op 0x1:(WRITE) flags 0x800 phys_seg 1 prio class 0
+[13166.215693] Buffer I/O error on dev sdb1, logical block 0, lost sync page write
+[13166.242108] EXT4-fs (sdb2): unmounting filesystem a36be96c-66be-4487-a7a6-0481bca99d89.
+[13166.243651] sd 1:0:0:0: [sdb] tag#0 access beyond end of device
+[13166.243663] I/O error, dev sdb, sector 5513216 op 0x1:(WRITE) flags 0x9800 phys_seg 1 prio class 0
+[13166.243671] Buffer I/O error on dev sdb2, logical block 557056, lost sync page write
+[13166.243684] JBD2: I/O error when updating journal superblock for sdb2-8.
+[13166.243689] Aborting journal on device sdb2-8.
+[13166.243713] sd 1:0:0:0: [sdb] tag#0 access beyond end of device
+[13166.243717] I/O error, dev sdb, sector 5513216 op 0x1:(WRITE) flags 0x9800 phys_seg 1 prio class 0
+[13166.243723] Buffer I/O error on dev sdb2, logical block 557056, lost sync page write
+[13166.243733] JBD2: I/O error when updating journal superblock for sdb2-8.
+[13166.243763] EXT4-fs error (device sdb2): ext4_put_super:1326: comm umount: Couldn't clean up the journal
+[13166.243784] sd 1:0:0:0: [sdb] tag#0 access beyond end of device
+[13166.243788] I/O error, dev sdb, sector 1056768 op 0x1:(WRITE) flags 0x3800 phys_seg 1 prio class 0
+[13166.243792] Buffer I/O error on dev sdb2, logical block 0, lost sync page write
+[13166.243799] EXT4-fs (sdb2): I/O error while writing superblock
+[13166.243802] EXT4-fs (sdb2): Remounting filesystem read-only
+[13174.547066] sd 1:0:0:0: [sdb] 15759360 512-byte logical blocks: (8.07 GB/7.51 GiB)
+[13174.547373] sdb: detected capacity change from 0 to 15759360
+[13406.047180] sdb: detected capacity change from 15759360 to 0
+[13416.284668] sd 1:0:0:0: [sdb] 62333952 512-byte logical blocks: (31.9 GB/29.7 GiB)
+[13416.285000] sdb: detected capacity change from 0 to 62333952
+[13416.285669]  sdb: sdb1 sdb2
+[13416.767252] FAT-fs (sdb1): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+[13417.011604] EXT4-fs (sdb2): recovery complete
+[13417.012954] EXT4-fs (sdb2): mounted filesystem a36be96c-66be-4487-a7a6-0481bca99d89 r/w with ordered data mode. Quota mode: none.
+
+
+sudo blkid /dev/sdb
+/dev/sdb: PTUUID="442e675f" PTTYPE="dos"
+
+lsblk
+sdb           8:16   1  29,7G  0 disk 
+├─sdb1        8:17   1   512M  0 part /media/nesas-10/bootfs
+└─sdb2        8:18   1  29,2G  0 part /media/nesas-10/rootfs
