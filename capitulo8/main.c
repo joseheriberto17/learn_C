@@ -8,7 +8,12 @@ void obtenerInfoCadena(void);
 int main(void)
 {
     // obtenerInfoCadena();
-    
+
+    char *nPtr = "a235.223#@!";
+    char *nnPtr;
+    double d = strtod(nPtr, &nnPtr);
+
+    printf("valor double: %f, puntero: %p, data: %s\n", d, nnPtr, nnPtr);
 
 
     return 0;
