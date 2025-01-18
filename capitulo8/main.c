@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <limits.h>
 
 void obtenerInfoCadena(void);
 
@@ -9,12 +11,25 @@ int main(void)
 {
     // obtenerInfoCadena();
 
-    char *nPtr = "a235.223#@!";
-    char *nnPtr;
+
+    const char *nPtr = "25.2334asd";
+    char *nnPtr; // puntero para mostrar el resto de la cadena
+
     double d = strtod(nPtr, &nnPtr);
+    printf("%20s: %f, restos: %s\n","valor double", d, nnPtr);
 
-    printf("valor double: %f, puntero: %p, data: %s\n", d, nnPtr, nnPtr);
+    long int ld = strtol(nPtr, &nnPtr,10);
+    printf("%20s: %ld, restos: %s\n","valor long int", ld,nnPtr);
 
+    unsigned long lu = strtoul(nPtr, &nnPtr,10);
+    printf("%20s: %lu, restos: %s\n","valor unsigned long",lu,nnPtr);
+
+    // printf("getchar: %x\n",getchar());
+
+    char sentence[7] = "";
+    fgets(sentence,7,stdin);
+
+    printf("%s",sentence);
 
     return 0;
 }

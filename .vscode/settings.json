@@ -4,6 +4,9 @@
         "*.py": "python",
         "*.c": "c",
         "stdio.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c"
     }
 }
