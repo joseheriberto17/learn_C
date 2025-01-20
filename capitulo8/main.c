@@ -8,6 +8,8 @@
 void obtenerInfoCadena(void);
 void conversionDeCadena(void);
 void usoDeFuncionesEstandar(void);
+void manipularCadenas(void);
+void copiarPorMemoria(char *, char *, size_t);
 
 // uso de la biblioteca de funcion de caracteres en C
 int main(void)
@@ -16,47 +18,30 @@ int main(void)
     // void conversionDeCadena(void)
     // void usoDeFuncionesEstandar(void);
 
-    char data[]="12";
+    // void manipularCadenas(void);
 
-    printf("%s",data);
+    // void compararCadenas(void);
 
-    char cadenaVacia1[20] = "";
-    char cadenaActual1[20] = "123456789012345678";
+    char dataSrc[10] = "123456";
+    char dataDest[10] = "";
 
-    puts("uso de strcpy");
-    printf("cadenaVacia: %s, cadenaAltual: %s\n",cadenaVacia1,cadenaActual1);
-    strcpy(cadenaVacia1, cadenaActual1);
-    printf("cadenaVacia: %s, cadenaAltual: %s\n",cadenaVacia1,cadenaActual1);
-    puts("");
+    printf("dataDest: %s\n", dataDest);
+    copiarPorMemoria(dataDest, dataSrc, (sizeof(dataSrc) / sizeof(dataSrc[0])));
+    printf("dataDest: %s\n", dataDest);
 
-    char cadenaVacia2[10] = {"abcdefg"};
-    char cadenaActual2[20] = {"123456789012345678"};
+    printf("tamano del agreglo: %zu , tamaño en bytes: %zu\n", (sizeof(dataSrc) / sizeof(dataSrc[0])), (sizeof(dataSrc)));
 
-    puts("uso de strncpy");
-    printf("cadenaVacia: %s, cadenaAltual: %s\n", cadenaVacia2, cadenaActual2);
-    strncpy(cadenaVacia2, cadenaActual2, 5);
-    printf("cadenaVacia: %s, cadenaAltual: %s\n", cadenaVacia2, cadenaActual2);
-    puts("");
+    // char x[] = "123456789"; // Inicializar el arreglo x
 
-    char cadenaA1[20]="abcdefghi";
-    char cadenaB1[10]="123456789";
-
-    puts("uso de strcat");
-    printf("cadenaA: %s, cadenaB: %s\n", cadenaA1, cadenaB1);
-    strcat(cadenaA1, cadenaB1);
-    printf("cadenaA: %s, cadenaB: %s\n", cadenaA1, cadenaB1);
-    puts("");
-
-    char cadenaA2[20]="abcdefghi";
-    char cadenaB2[10]="123456789";
-
-    puts("uso de strncat");
-    printf("cadenaA: %s, cadenaB: %s\n", cadenaA2, cadenaB2);
-    strncat(cadenaA2, cadenaB2,3);
-    printf("cadenaA: %s, cadenaB: %s\n", cadenaA2, cadenaB2);
-    puts("");
+    // printf("data: %s",&x[3]);
+    // printf((char *)memmove(x,&x[3],));
 
     return 0;
+}
+
+void copiarPorMemoria(char *arrayPtrDest, char *arrayPtrSrc, size_t n)
+{
+    memcpy(arrayPtrDest, arrayPtrSrc, n);
 }
 
 void obtenerInfoCadena(void)
@@ -114,4 +99,60 @@ void usoDeFuncionesEstandar(void)
     }
 
     // sprintf(sentence, "integer:%6d\ndouble:%7.2f", 1234, 1.456);
+}
+
+void manipularCadenas(void)
+{
+    char data[] = "12";
+
+    printf("%s", data);
+
+    char cadenaVacia1[20] = "";
+    char cadenaActual1[20] = "123456789012345678";
+
+    puts("uso de strcpy");
+    printf("cadenaVacia: %s, cadenaAltual: %s\n", cadenaVacia1, cadenaActual1);
+    strcpy(cadenaVacia1, cadenaActual1);
+    printf("cadenaVacia: %s, cadenaAltual: %s\n", cadenaVacia1, cadenaActual1);
+    puts("");
+
+    char cadenaVacia2[10] = {"abcdefg"};
+    char cadenaActual2[20] = {"123456789012345678"};
+
+    puts("uso de strncpy");
+    printf("cadenaVacia: %s, cadenaAltual: %s\n", cadenaVacia2, cadenaActual2);
+    strncpy(cadenaVacia2, cadenaActual2, 5);
+    printf("cadenaVacia: %s, cadenaAltual: %s\n", cadenaVacia2, cadenaActual2);
+    puts("");
+
+    char cadenaA1[20] = "abcdefghi";
+    char cadenaB1[10] = "123456789";
+
+    puts("uso de strcat");
+    printf("cadenaA: %s, cadenaB: %s\n", cadenaA1, cadenaB1);
+    strcat(cadenaA1, cadenaB1);
+    printf("cadenaA: %s, cadenaB: %s\n", cadenaA1, cadenaB1);
+    puts("");
+
+    char cadenaA2[20] = "abcdefghi";
+    char cadenaB2[10] = "123456789";
+
+    puts("uso de strncat");
+    printf("cadenaA: %s, cadenaB: %s\n", cadenaA2, cadenaB2);
+    strncat(cadenaA2, cadenaB2, 3);
+    printf("cadenaA: %s, cadenaB: %s\n", cadenaA2, cadenaB2);
+    puts("");
+}
+
+void compararCadena(void)
+{
+    char cadenaA1[10] = {'1', '2', '3', '4', '5'};
+    char cadenaB1[10] = {'1', '2', '3', '4', '5'};
+
+    printf("strcmp: %d\n", strcmp(cadenaA1, cadenaB1));
+
+    char cadenaA2[10] = "12345";
+    char cadenaB2[10] = "123jk";
+
+    printf("strncmp: %d\n", strncmp(cadenaA2, cadenaB2, 3));
 }
