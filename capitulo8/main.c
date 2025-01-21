@@ -22,26 +22,29 @@ int main(void)
 
     // void compararCadenas(void);
 
-    char dataSrc[10] = "123456";
-    char dataDest[10] = "";
+    // char dataSrc[10] = "123456";
+    // char dataDest[10] = "";    
+    // copiarPorMemoria(dataDest, dataSrc, (sizeof(dataSrc)));
 
-    printf("dataDest: %s\n", dataDest);
-    copiarPorMemoria(dataDest, dataSrc, (sizeof(dataSrc) / sizeof(dataSrc[0])));
-    printf("dataDest: %s\n", dataDest);
+    char x[] = "123456789"; // Inicializar el arreglo x
+    int a = 12;
 
-    printf("tamano del agreglo: %zu , tamaño en bytes: %zu\n", (sizeof(dataSrc) / sizeof(dataSrc[0])), (sizeof(dataSrc)));
+    printf("data: %s\n", &x[3]);
+    printf("data: %s\n", (char *)memmove(x, &x[a], 3));
 
-    // char x[] = "123456789"; // Inicializar el arreglo x
+    char string1[15] = "BBBBBBBBBBBBBB";
 
-    // printf("data: %s",&x[3]);
-    // printf((char *)memmove(x,&x[3],));
+    printf("string1 = %s\n", string1);
+    printf("string1 after memset = %s\n", (char *)memset(string1, 'b', sizeof(string1)));
 
     return 0;
 }
 
 void copiarPorMemoria(char *arrayPtrDest, char *arrayPtrSrc, size_t n)
 {
+    printf("dataDest: %s\n", arrayPtrDest);
     memcpy(arrayPtrDest, arrayPtrSrc, n);
+    printf("dataDest: %s\n", arrayPtrDest);
 }
 
 void obtenerInfoCadena(void)
