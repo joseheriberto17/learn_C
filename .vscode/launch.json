@@ -2,26 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug (WSL)",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/test_tarjeta_universal/main",
-            "args": [],
-            "cwd": "${workspaceFolder}",
-            "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb",
-            "externalConsole": true,
-            "preLaunchTask": "build-ssd1306",
-            "setupCommands": [
-                {
-                    "text": "-enable-pretty-printing",
-                    "description": "Pretty printing",
-                    "ignoreFailures": true
-                }
-            ]
-        },
-        {
-            "name": "C/C++: gcc build and debug active file",
+            "name": "C/C++: gcc build and debug active file (test_tarjeta_universal)",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/test_tarjeta_universal/main",
@@ -43,8 +24,34 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: gcc build active file",
+            "preLaunchTask": "C/C++: gcc build active file (test_tarjeta_universal)",
             "miDebuggerPath": "/usr/bin/gdb"
+        },
+                {
+            "name": "C/C++: gcc build and debug active file",
+            "type": "cppdbg", // Depurador C/C++ usando GDB
+            "request": "launch", // launch: (inicie el programa) , attach: (adjuntarse a un proceso existente)
+            "program": "${fileDirname}/${fileBasenameNoExtension}", // Ruta del ejecutable que será depurado
+            "args": [],
+            "stopAtEntry": false, // Si se coloca true, el depurador se detiene antes de ejecutar main()
+            "cwd": "${fileDirname}", // Directorio de trabajo (current working directory) del programa al ejecutarse
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb", // depurar para linux
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing", // Hace que gdb muestre objetos y estructuras de forma legible
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel", // Más fácil de leer que AT&T.
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: gcc build active file", // Ejecuta una tarea definida en tasks.json antes de depurar
+            "miDebuggerPath": "/usr/bin/gdb" //Ruta del ejecutable de GDB
         }
     ]
 }
