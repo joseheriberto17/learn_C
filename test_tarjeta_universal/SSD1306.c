@@ -1,3 +1,19 @@
+/*
+ * @file    SSD1306.c
+ * @author  Jose Heriberto
+ * @date    2025-12-08
+ * @brief   Definición y validación de comandos para el controlador SSD1306 (Directo desde la documetacion).
+ *
+ * @details
+ * Este archivo contiene:
+ *  - funcion de comando por defecto que se puedad modificar
+ *  - funcion adicional despues  inicializar el comando
+ * 
+ *
+ * @note
+ * Soporta comandos con hasta 7 bytes de argumentos.
+ */
+
 #include "SSD1306.h"
 
 // // generacion de menu del debug
@@ -25,7 +41,7 @@ void CreateArrayCmdDefault(uint8_t (*buf_tx)[8], uint8_t buf_size)
 }
 
 // alistamiento de los comando via I2C
-void FrameCmdToI2C(uint8_t *buf_tx, uint16_t *buf_size)
+void FrameCmdAddBitContinue(uint8_t *buf_tx, uint16_t *buf_size)
 {
   uint8_t buffer_full_tx[32][8];
   uint8_t buffer_full_tx_len_rows = 32;

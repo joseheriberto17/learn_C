@@ -6,10 +6,11 @@ classDiagram
         +uint8_t cmd_Args_bit[7]
         +uint8_t cmd_Args[7]
         +uint8_t cmd_Args_current[7]
-        +array_combinado_fijo_args()
-        +Check_Arg_variable()
-        +reset_Args_List_Cmd()
-        +check_Args_Current_zeros()
+
+        -bool check_Args_Current_zeros(SSD1306_comand SSD1306_cmd)
+        +void reset_Args_List_Cmd()
+        +void array_combinado_fijo_args(uint8_t i,uint8_t *array)
+        +uint8_t Check_Arg_variable(uint8_t Args_bit[7])
     }
 
     class SSD1306_cmd_enum {
@@ -38,7 +39,10 @@ classDiagram
         Set_Display_Clock_Divide_Ratio_and_OSC_Frequency
         Set_Precharge_Period
         Charge_Pump_Command
+        +uint8_t SSD1306_cmd_default()
     }
 
+    
+
     SSD1306_comand --> SSD1306_cmd_enum : usa
-    SSD1306_comand --> SSD1306_comand : contiene
+    

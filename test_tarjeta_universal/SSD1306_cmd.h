@@ -9,14 +9,14 @@
 //
 typedef struct
 {
-  char str_cmd[64];
+  const char str_cmd[64];
   // array de valores de argumento fijos
-  uint8_t cmd_fijo[7];
-  uint8_t size_cmd;
+  const uint8_t cmd_fijo[7];
+  const uint8_t size_cmd;
   // array de valores de argumento variable, bit a bit validos que ses puede disponer a variar
-  uint8_t cmd_Args_bit[7];
+  const uint8_t cmd_Args_bit[7];
   // array de valores de argumento variable, por defecto
-  uint8_t cmd_Args[7];
+  const uint8_t cmd_Args[7];
   // array de valores de argumento variable, por actual
   uint8_t cmd_Args_current[7];
 } SSD1306_comand;

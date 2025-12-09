@@ -11,7 +11,7 @@ int main(void)
 
     memset(buffer_full_tx, 0, sizeof(buffer_full_tx));
 
-    FrameCmdToI2C(buffer_full_tx, &buffer_full_tx_len);
+    FrameCmdAddBitContinue(buffer_full_tx, &buffer_full_tx_len);
 
     for (size_t i = 0; i < buffer_full_tx_len; i++)
     {
