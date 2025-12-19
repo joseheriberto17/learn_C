@@ -2,32 +2,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "C/C++: gcc build and debug active file (test_tarjeta_universal)",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/test_tarjeta_universal/main",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Set Disassembly Flavor to Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "C/C++: gcc build active file (test_tarjeta_universal)",
-            "miDebuggerPath": "/usr/bin/gdb"
-        },
-                {
             "name": "C/C++: gcc build and debug active file",
             "type": "cppdbg", // Depurador C/C++ usando GDB
             "request": "launch", // launch: (inicie el programa) , attach: (adjuntarse a un proceso existente)
@@ -50,7 +24,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: gcc build active file", // Ejecuta una tarea definida en tasks.json antes de depurar
+            "preLaunchTask": "C/C++: gcc build active file (test_tarjeta_universal)", // Ejecuta una tarea definida en tasks.json antes de depurar
             "miDebuggerPath": "/usr/bin/gdb" //Ruta del ejecutable de GDB
         }
     ]

@@ -1,25 +1,44 @@
 #ifndef SSD1306_CMD_H
 #define SSD1306_CMD_H
 
-#include "stdint.h"
-#include "stdio.h"
-#include "stdbool.h"
-#include "memory.h" 
+
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+#include <stdbool.h>
+#include <memory.h> 
 
 //
-typedef struct
+#define SSD1306_MAX_ARGS 7
+#define SSD1306_MAX_INFO 8
+
+typedef struct SSD1306_comand SSD1306_comand;
+
+/* Handler de comandos */
+typedef bool (*ssd1306_handler_t)(SSD1306_comand *cmd,uint8_t *args);
+
+struct SSD1306_comand
 {
-  const char str_cmd[64];
-  // array de valores de argumento fijos
-  const uint8_t cmd_fijo[7];
-  const uint8_t size_cmd;
-  // array de valores de argumento variable, bit a bit validos que ses puede disponer a variar
-  const uint8_t cmd_Args_bit[7];
-  // array de valores de argumento variable, por defecto
-  const uint8_t cmd_Args[7];
-  // array de valores de argumento variable, por actual
-  uint8_t cmd_Args_current[7];
-} SSD1306_comand;
+  char *cmd_name;
+  // array de valores de argumento fijos.
+  uint8_t cmd_fijo[SSD1306_MAX_ARGS];
+  uint8_t size_cmd;
+  // array de valores de argumento variable, bit a bit validos que ses puede disponer a variar.
+  uint8_t arg_mask[SSD1306_MAX_ARGS];
+  // array de valores de argumento variable, por defecto.
+  uint8_t arg_default[SSD1306_MAX_ARGS];
+  // array de valores de argumento variable, por actual.
+  uint8_t arg_current[SSD1306_MAX_ARGS];
+  // Tipo de intepretacion (select "2" o range "1").
+  uint8_t arg_type[SSD1306_MAX_ARGS];
+  // arreglo de cadena.
+  char *arg_info[SSD1306_MAX_ARGS][SSD1306_MAX_INFO];
+  // funcion para validaciones especiales.
+  ssd1306_handler_t handler;
+} ;
+
+//es posible que nesecite un inizialize o contructro para validar la lista de SSD1306_comand;
+
 
 // enum de todos los comando en orden del  datasheet
 typedef enum SSD1306_cmd_enum
@@ -54,7 +73,7 @@ extern const uint8_t SSD1306_cmd_default[];
 extern const size_t  SSD1306_cmd_default_len;
 
 extern SSD1306_comand SSD1306_cmd_list[];
-extern const size_t        SSD1306_cmd_list_len;
+extern const size_t SSD1306_cmd_list_len;
 
 // metodo de structs
 // crea un array de comando con los argumento fijo y variable juntos
