@@ -27,8 +27,6 @@ struct SSD1306_comand
   uint8_t arg_mask[SSD1306_MAX_ARGS];
   // array de valores de argumento variable, por defecto.
   uint8_t arg_default[SSD1306_MAX_ARGS];
-  // array de valores de argumento variable, por actual.
-  uint8_t arg_current[SSD1306_MAX_ARGS];
   // Tipo de intepretacion (select "2" o range "1").
   uint8_t arg_type[SSD1306_MAX_ARGS];
   // arreglo de cadena.
@@ -78,10 +76,15 @@ extern const size_t SSD1306_cmd_list_len;
 // metodo de structs
 // crea un array de comando con los argumento fijo y variable juntos
 // se superpone el array fijo y variables
-void array_combinado_fijo_args(SSD1306_comand SSD1306_cmd, uint8_t i, uint8_t *array);
+void array_args_cmd_init(SSD1306_comand SSD1306_cmd, uint8_t i, uint8_t *array);
 
 uint8_t Check_Arg_variable(SSD1306_comand SSD1306_cmd,uint8_t Args_bit[7]);
 
-void reset_Args_List_Cmd(SSD1306_comand *SSD1306_cmd);
+// void reset_Args_List_Cmd(SSD1306_comand *SSD1306_cmd);
+
+//
+
+
+// bool Continuous_Horizontal_Scroll_handler (SSD1306_comand *cmd,uint8_t *args);
 
 #endif /* SSD1306_CMD_H */

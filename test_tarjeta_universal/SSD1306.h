@@ -8,7 +8,7 @@
 
 
 // void list_cmd(uint8_t *buf_tx, uint8_t *buf_arg);
-void CreateArrayCmdDefault(uint8_t (*buf)[8], uint8_t buf_size);
+void list_array_args_cmd_init(uint8_t (*buf)[8], uint8_t buf_size);
 void FrameCmdAddBitContinue(uint8_t *buf_tx, uint16_t *buf_size);
 
 #endif
